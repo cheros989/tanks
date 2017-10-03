@@ -5,12 +5,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import game.map.Map;
@@ -48,7 +44,7 @@ public class MainScene extends Canvas implements Runnable {
 	}
 	
 	public void init() {
-		hero = getSprite("man.png");
+		hero = new Tank("man.png");
 		addKeyListener(new KeyboardListener());
 	}
 
@@ -85,20 +81,5 @@ public class MainScene extends Canvas implements Runnable {
 		hero.draw(graphics);
 		graphics.dispose();
 		bStrategy.show();
-	}
-	
-	public Sprite getSprite(String path) {
-		BufferedImage sourceImage = null;
-		
-		try {
-			URL url = this.getClass().getClassLoader().getResource(path);
-			sourceImage = ImageIO.read(url);
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		
-		Sprite sprite = new Tank(Toolkit.getDefaultToolkit().createImage(sourceImage.getSource()));
-		
-		return sprite;
 	}
 }

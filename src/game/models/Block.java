@@ -1,16 +1,18 @@
 package game.models;
 
 import java.awt.Graphics;
-import java.awt.Image;
+
+import game.MainScene;
 
 public class Block extends Sprite {
 	
-	public Block(Image image) {
-		super(image);
+	public Block(String path) {
+		super(path);
 	}
 	
 	@Override
 	public void draw(Graphics g) {
+		g.fillRect(getPosX(), getPosY(), MainScene.TAIL_SIDE, MainScene.TAIL_SIDE);
 	}
 	
 }

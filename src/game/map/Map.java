@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import game.MainScene;
+import game.models.Block;
 
 public class Map {
 	
@@ -39,8 +40,8 @@ public class Map {
 			String[] currentRow = map[i].split("");
 			for (int j = 0; j < 30; j++) {
 				if (currentRow[j].equals("x")) {
-					g.setColor(new Color(0,0,128));
-					g.fillRect(j*MainScene.TAIL_SIDE, i*MainScene.TAIL_SIDE, MainScene.TAIL_SIDE, MainScene.TAIL_SIDE);
+					Block block = new Block("man.png");
+					block.setPosition(j, i);
 				}
 				if (currentRow[j].equals("-")) {
 					g.setColor(new Color(0,0,0));

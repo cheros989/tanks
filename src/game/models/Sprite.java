@@ -2,6 +2,11 @@ package game.models;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
 
 public abstract class Sprite {
 
@@ -9,8 +14,16 @@ public abstract class Sprite {
 	protected int posx, posy = 0;
 	protected int speed = 3;
 	
-	public Sprite(Image image) {
-		this.image = image;
+	public Sprite(String path) {
+		BufferedImage sourceImage = null;
+		
+		try {
+			URL url = this.getClass().getClassLoader().getResource(path);
+			sourceImage = ImageIO.read(url);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		this.image = Toolkit.getDefaultToolkit().createImage(sourceImage.getSource());
 	}
 	
 	public int getWidth() {

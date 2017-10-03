@@ -1,14 +1,13 @@
 package game.models;
 
 import java.awt.Graphics;
-import java.awt.Image;
 
 import game.MainScene;
 
 public class Tank extends Sprite {
 	
-	public Tank(Image image) {
-		super(image);
+	public Tank(String path) {
+		super(path);
 	}
 	
 	@Override

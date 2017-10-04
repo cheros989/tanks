@@ -30,4 +30,11 @@ public class Tank extends Sprite {
 	public void shoot() {
 		
 	}
+	
+	public void stop() {
+		if (MainScene.leftPressed) { MainScene.leftPressed = false; posx += speed; };
+		if (MainScene.rightPressed) { MainScene.rightPressed = false; posx -= speed; };
+		if (MainScene.upPressed) { MainScene.upPressed = false; posy += speed; };
+		if (MainScene.downPressed) { MainScene.downPressed = false; posx -= speed; };
+	}
 }

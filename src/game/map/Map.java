@@ -3,6 +3,7 @@ package game.map;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import game.MainScene;
 import game.models.Block;
 import game.models.EmptyPlace;
 
@@ -43,7 +44,7 @@ public class Map {
 			String[] currentRow = map[i].split("");
 			for (int j = 0; j < 30; j++) {
 				if (currentRow[j].equals("x")) {
-					Block block = new Block("man.png");
+					Block block = new Block("block.png");
 					block.setPosition(j*30, i*30);
 					blocks.add(block);
 				}
@@ -58,6 +59,9 @@ public class Map {
 	
 	public static void drawMap(Graphics g) {
 		for (Block block : blocks) {
+			if (block.isCollide(MainScene.hero)) {
+				MainScene.hero.stop();
+			}
 			block.draw(g);
 		}
 		for (EmptyPlace emptyPlace : emptyPlaces) {

@@ -10,7 +10,6 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import game.map.Map;
-import game.models.Sprite;
 import game.models.Tank;
 
 public class MainScene extends Canvas implements Runnable {
@@ -26,7 +25,7 @@ public class MainScene extends Canvas implements Runnable {
 	public static boolean rightPressed = false;
 	public static boolean upPressed = false;
 	public static boolean downPressed = false;
-	public static Sprite hero;
+	public static Tank hero;
 
 	public static void main(String args[]) {
 		MainScene mainScene = new MainScene();
@@ -44,7 +43,7 @@ public class MainScene extends Canvas implements Runnable {
 	}
 	
 	public void init() {
-		hero = new Tank("man.png");
+		hero = new Tank("tank.png");
 		addKeyListener(new KeyboardListener());
 		Map.buildMap();
 	}
@@ -52,6 +51,7 @@ public class MainScene extends Canvas implements Runnable {
 	@Override
 	public void run() {
 		init();
+		hero.setPosition(132, 132);
 		while (running) {
 			update(UPDATE_TIME);
 		}

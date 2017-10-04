@@ -46,6 +46,7 @@ public class MainScene extends Canvas implements Runnable {
 	public void init() {
 		hero = new Tank("man.png");
 		addKeyListener(new KeyboardListener());
+		Map.buildMap();
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class MainScene extends Canvas implements Runnable {
 		Graphics graphics = bStrategy.getDrawGraphics();
 		graphics.setColor(new Color(0, 155, 0));
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
-		Map.buildMap(graphics);
+		Map.drawMap(graphics);
 		hero.draw(graphics);
 		graphics.dispose();
 		bStrategy.show();

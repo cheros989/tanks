@@ -1,10 +1,10 @@
 package game.map;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
-import game.MainScene;
 import game.models.Block;
+import game.models.EmptyPlace;
 
 public class Map {
 	
@@ -31,23 +31,37 @@ public class Map {
 		"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	};
 	
+	private static ArrayList<Block> blocks = new ArrayList<Block>();
+	private static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
+	
 	public static String[] getMap() {
 		return map;
 	}
 	
-	public static void buildMap(Graphics g) {
+	public static void buildMap() {
 		for (int i = 0; i < 20; i++) {
 			String[] currentRow = map[i].split("");
 			for (int j = 0; j < 30; j++) {
 				if (currentRow[j].equals("x")) {
 					Block block = new Block("man.png");
-					block.setPosition(j, i);
+					block.setPosition(j*30, i*30);
+					blocks.add(block);
 				}
 				if (currentRow[j].equals("-")) {
-					g.setColor(new Color(0,0,0));
-					g.fillRect(j*MainScene.TAIL_SIDE, i*MainScene.TAIL_SIDE, MainScene.TAIL_SIDE, MainScene.TAIL_SIDE);
+					EmptyPlace emptyPlace = new EmptyPlace("man.png");
+					emptyPlace.setPosition(j*30, i*30);
+					emptyPlaces.add(emptyPlace);
 				}
 			}
+		}
+	}
+	
+	public static void drawMap(Graphics g) {
+		for (Block block : blocks) {
+			block.draw(g);
+		}
+		for (EmptyPlace emptyPlace : emptyPlaces) {
+			emptyPlace.draw(g);
 		}
 	}
 }

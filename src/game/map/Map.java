@@ -59,8 +59,8 @@ public class Map {
 	
 	public static void drawMap(Graphics g) {
 		for (Block block : blocks) {
-			if (block.isCollide(MainScene.hero)) {
-				MainScene.hero.stop();
+			if (MainScene.hero.isCollide(block)) {
+				MainScene.hero.stop(block);
 			}
 			block.draw(g);
 		}

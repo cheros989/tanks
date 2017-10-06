@@ -75,4 +75,34 @@ public abstract class Sprite {
 
 		return false;
 	}
+	
+	public boolean downCollide(Sprite sprite) {
+
+		if (sprite.getPosY() == getPosY() + getHeight())
+			return true;
+		
+		return false;
+	}
+	
+	public boolean upCollide(Sprite sprite) {
+
+		if (sprite.getPosY() + sprite.getHeight() == getPosY())
+			return true;
+		
+		return false;
+	}
+	
+	public boolean rightCollide(Sprite sprite) {
+		if (sprite.getPosX() == getPosX() + getWidth())
+			return true;
+		
+		return false;
+	}
+	
+	public boolean leftCollide(Sprite sprite) {
+		if (sprite.getPosX() + sprite.getWidth() == getPosX()) 
+			return true;
+		
+		return false;
+	}
 }

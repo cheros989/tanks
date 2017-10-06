@@ -3,7 +3,6 @@ package game.map;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import game.MainScene;
 import game.models.Block;
 import game.models.EmptyPlace;
 
@@ -32,7 +31,7 @@ public class Map {
 		"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	};
 	
-	private static ArrayList<Block> blocks = new ArrayList<Block>();
+	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	private static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
 	
 	public static String[] getMap() {
@@ -59,9 +58,6 @@ public class Map {
 	
 	public static void drawMap(Graphics g) {
 		for (Block block : blocks) {
-			if (block.isCollide(MainScene.hero)) {
-				MainScene.hero.stop();
-			}
 			block.draw(g);
 		}
 		for (EmptyPlace emptyPlace : emptyPlaces) {

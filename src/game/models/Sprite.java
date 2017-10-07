@@ -52,39 +52,7 @@ public abstract class Sprite {
 	public int getPosY() {
 		return this.posy;
 	}
-
-	public boolean upCollide(Sprite sprite) {
-
-		if (sprite.getPosY() <= getPosY() + getHeight() && sprite.getPosY() >= getPosY() && horizontalCollide(sprite))
-			return true;
-		
-		return false;
-	}
 	
-	public boolean downCollide(Sprite sprite) {
-
-		if (sprite.getPosY() + sprite.getHeight() >= getPosY()
-				&& sprite.getPosY() + sprite.getHeight() <= getPosY() + getHeight() && horizontalCollide(sprite))
-			return true;
-		
-		return false;
-	}
-	
-	public boolean rightCollide(Sprite sprite) {
-		if (sprite.getPosX() <= getPosX() + getWidth() && sprite.getPosX() >= getPosX() && verticalCollide(sprite))
-			return true;
-		
-		return false;
-	}
-	
-	public boolean leftCollide(Sprite sprite) {
-		if (sprite.getPosX() + sprite.getWidth() >= getPosX()
-				&& sprite.getPosX() + sprite.getWidth() <= getPosX() + getWidth() && verticalCollide(sprite)) 
-			return true;
-		
-		return false;
-	}
-
 	protected boolean verticalCollide(Sprite sprite) {
 		if (sprite.getPosY() <= getPosY() + getHeight() && sprite.getPosY() >= getPosY()
 				|| sprite.getPosY() + sprite.getHeight() >= getPosY()
@@ -103,7 +71,6 @@ public abstract class Sprite {
 		return false;
 	}
 	
-<<<<<<< HEAD
 	public boolean downCollide(Sprite sprite) {
 
 		if (sprite.getPosY() == getPosY() + getHeight())
@@ -132,9 +99,9 @@ public abstract class Sprite {
 			return true;
 		
 		return false;
-=======
+	}
+	
 	public boolean isCollide(Sprite sprite) {
 		return horizontalCollide(sprite) && verticalCollide(sprite);
->>>>>>> 66cdf14da9f231c0ba078f884f2eb46a497be44b
 	}
 }

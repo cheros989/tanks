@@ -58,12 +58,6 @@ public class Map {
 	
 	public static void drawMap(Graphics g) {
 		for (Block block : blocks) {
-<<<<<<< HEAD
-=======
-			if (MainScene.hero.isCollide(block)) {
-				MainScene.hero.stop(block);
-			}
->>>>>>> 66cdf14da9f231c0ba078f884f2eb46a497be44b
 			block.draw(g);
 		}
 		for (EmptyPlace emptyPlace : emptyPlaces) {

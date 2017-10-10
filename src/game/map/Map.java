@@ -66,6 +66,9 @@ public class Map {
 			emptyPlace.draw(g);
 		}
 		for (Shell shell : shells) {
+			if (shell.isDelete()) {
+				continue;
+			}
 			shell.draw(g);
 		}
 	}

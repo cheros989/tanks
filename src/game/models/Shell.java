@@ -9,6 +9,7 @@ import game.map.Map;
 public class Shell extends Sprite {
 	
 	private int direction;
+	private boolean isDelete = false;
 
 	public Shell(String path, int direction, double startX, double startY) {
 		super(path);
@@ -23,13 +24,18 @@ public class Shell extends Sprite {
 		Rectangle rectangle = getRect();
 		for (Block block : Map.blocks) {
 			if (rectangle.intersects(block.getRect())) {
-				this.speed = 0;
+				this.isDelete = true;
 			}
 		}
+//		if (rectangle.intersects(MainScene.hero.getRect())) MainScene.hero.speed = 0;
 		if (direction == Direction.UP) posy -= speed;
 		if (direction == Direction.DOWN) posy += speed;
 		if (direction == Direction.LEFT) posx -= speed;
 		if (direction == Direction.RIGHT) posx += speed;
+	}
+
+	public boolean isDelete() {
+		return isDelete;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import game.models.Block;
 import game.models.EmptyPlace;
+import game.models.Shell;
 
 public class Map {
 	
@@ -20,7 +21,7 @@ public class Map {
 		"x----------------------------x",
 		"x----------------------------x",
 		"x----------------------------x",
-		"x----------------------------x",
+		"x----xxxx--------------------x",
 		"x----------------------------x",
 		"x----------------------------x",
 		"x----------------------------x",
@@ -33,6 +34,7 @@ public class Map {
 	
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	public static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
+	public static ArrayList<Shell> shells = new ArrayList<Shell>();
 	
 	public static String[] getMap() {
 		return map;
@@ -62,6 +64,9 @@ public class Map {
 		}
 		for (EmptyPlace emptyPlace : emptyPlaces) {
 			emptyPlace.draw(g);
+		}
+		for (Shell shell : shells) {
+			shell.draw(g);
 		}
 	}
 }

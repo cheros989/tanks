@@ -18,6 +18,9 @@ public class KeyboardListener extends KeyAdapter {
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			MainScene.downPressed = true;
 		}
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			MainScene.hero.shoot();
+		}
 	}
 	
 	@Override

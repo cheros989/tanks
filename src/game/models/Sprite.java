@@ -2,6 +2,7 @@ package game.models;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.net.URL;
@@ -52,57 +53,8 @@ public abstract class Sprite {
 	public int getPosY() {
 		return this.posy;
 	}
-
-	public boolean isCollide(Sprite sprite) {
-
-		return horizontalCollide(sprite) && verticalCollide(sprite);
-	}
-
-	protected boolean verticalCollide(Sprite sprite) {
-		if (sprite.getPosY() <= getPosY() + getHeight() && sprite.getPosY() >= getPosY()
-				|| sprite.getPosY() + sprite.getHeight() >= getPosY()
-						&& sprite.getPosY() + sprite.getHeight() <= getPosY() + getHeight())
-			return true;
-
-		return false;
-	}
-
-	protected boolean horizontalCollide(Sprite sprite) {
-		if (sprite.getPosX() <= getPosX() + getWidth() && sprite.getPosX() >= getPosX()
-				|| sprite.getPosX() + sprite.getWidth() >= getPosX()
-						&& sprite.getPosX() + sprite.getWidth() <= getPosX() + getWidth())
-			return true;
-
-		return false;
-	}
 	
-	public boolean downCollide(Sprite sprite) {
-
-		if (sprite.getPosY() == getPosY() + getHeight())
-			return true;
-		
-		return false;
-	}
-	
-	public boolean upCollide(Sprite sprite) {
-
-		if (sprite.getPosY() + sprite.getHeight() == getPosY())
-			return true;
-		
-		return false;
-	}
-	
-	public boolean rightCollide(Sprite sprite) {
-		if (sprite.getPosX() == getPosX() + getWidth())
-			return true;
-		
-		return false;
-	}
-	
-	public boolean leftCollide(Sprite sprite) {
-		if (sprite.getPosX() + sprite.getWidth() == getPosX()) 
-			return true;
-		
-		return false;
+	public Rectangle getRect() {
+		return new Rectangle(getPosX(), getPosY(), getWidth(), getHeight());
 	}
 }

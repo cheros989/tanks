@@ -32,7 +32,7 @@ public class Map {
 	};
 	
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
-	private static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
+	public static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
 	
 	public static String[] getMap() {
 		return map;
@@ -48,7 +48,7 @@ public class Map {
 					blocks.add(block);
 				}
 				if (currentRow[j].equals("-")) {
-					EmptyPlace emptyPlace = new EmptyPlace("man.png");
+					EmptyPlace emptyPlace = new EmptyPlace("emptyPlace.png");
 					emptyPlace.setPosition(j*30, i*30);
 					emptyPlaces.add(emptyPlace);
 				}

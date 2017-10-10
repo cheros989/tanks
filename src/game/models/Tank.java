@@ -1,6 +1,7 @@
 package game.models;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import game.MainScene;
 import game.map.Map;
@@ -14,36 +15,48 @@ public class Tank extends Sprite {
 
 	@Override
 	public void draw(Graphics g) {
+		boolean leftIntersect = false;
+		boolean upIntersect = false;
+		boolean downIntersect = false;
+		boolean rightIntersect = false;
 		for (Block block : Map.blocks) {
-			boolean isCollide = this.isCollide(block);
-			if (isCollide) {
-				System.out.println("NMB: " + block.hashCode() + "RIGHT: " + this.rightCollide(block) + ";LEFT: " + this.leftCollide(block) + ";UP: " + this.upCollide(block) + ";DOWN: " + this.downCollide(block));
-				if (this.leftCollide(block)) {
-					MainScene.leftPressed = false;
+			Rectangle b = block.getRect();
+			Rectangle t = this.getRect();
+			if (MainScene.leftPressed) {
+				t.setLocation(getPosX() - speed, getPosY());
+				if (t.intersects(b)) {
+					leftIntersect = true;
 				}
-				if (this.rightCollide(block)) {
-					MainScene.rightPressed = false;
+			}
+			if (MainScene.upPressed) {
+				t.setLocation(getPosX(), getPosY() - speed);
+				if (t.intersects(b)) {
+					upIntersect = true;
 				}
-
-				if (this.upCollide(block)) {
-					MainScene.upPressed = false;
+			}
+			if (MainScene.downPressed) {
+				t.setLocation(getPosX(), getPosY() + speed);
+				if (t.intersects(b)) {
+					downIntersect = true;
 				}
-				if (this.downCollide(block)) {
-					MainScene.downPressed = false;
+			}
+			if (MainScene.rightPressed) {
+				t.setLocation(getPosX() + speed, getPosY());
+				if (t.intersects(b)) {
+					rightIntersect = true;
 				}
-				break;
 			}
 		}
-		if (MainScene.leftPressed) {
+		if (MainScene.leftPressed && !leftIntersect) {
 			posx -= speed;
 		}
-		if (MainScene.rightPressed) {
+		if (MainScene.rightPressed && !rightIntersect) {
 			posx += speed;
 		}
-		if (MainScene.upPressed) {
+		if (MainScene.upPressed && !upIntersect) {
 			posy -= speed;
 		}
-		if (MainScene.downPressed) {
+		if (MainScene.downPressed && !downIntersect) {
 			posy += speed;
 		}
 		g.drawImage(image, posx, posy, null);

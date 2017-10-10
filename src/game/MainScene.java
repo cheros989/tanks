@@ -25,6 +25,10 @@ public class MainScene extends Canvas implements Runnable {
 	public static boolean rightPressed = false;
 	public static boolean upPressed = false;
 	public static boolean downPressed = false;
+	public static boolean leftBlock = false;
+	public static boolean rightBlock = false;
+	public static boolean downBlock = false;
+	public static boolean upBlock = false;
 	public static Tank hero;
 
 	public static void main(String args[]) {

@@ -63,7 +63,7 @@ public class Tank extends Sprite {
 	}
 
 	public void shoot() {
-
+		
 	}
 
 }

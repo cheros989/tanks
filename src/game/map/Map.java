@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import game.models.Block;
 import game.models.EmptyPlace;
 import game.models.Shell;
+import game.models.Tank;
 
 public class Map {
 	
@@ -35,6 +36,7 @@ public class Map {
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	public static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
 	public static ArrayList<Shell> shells = new ArrayList<Shell>();
+	public static ArrayList<Tank> tanks = new ArrayList<Tank>();
 	
 	public static String[] getMap() {
 		return map;
@@ -70,6 +72,9 @@ public class Map {
 				continue;
 			}
 			shell.draw(g);
+		}
+		for (Tank tank : tanks) {
+			tank.draw(g);
 		}
 	}
 }

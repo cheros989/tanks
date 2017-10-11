@@ -26,6 +26,7 @@ public class MainScene extends Canvas implements Runnable {
 	public static boolean upPressed = false;
 	public static boolean downPressed = false;
 	public static Tank hero;
+	public static Tank hero2;
 
 	public static void main(String args[]) {
 		MainScene mainScene = new MainScene();
@@ -44,6 +45,9 @@ public class MainScene extends Canvas implements Runnable {
 	
 	public void init() {
 		hero = new Tank("tank.png");
+		hero2 = new Tank("tank.png");
+		Map.tanks.add(hero);
+		Map.tanks.add(hero2);
 		addKeyListener(new KeyboardListener());
 		Map.buildMap();
 	}
@@ -52,6 +56,7 @@ public class MainScene extends Canvas implements Runnable {
 	public void run() {
 		init();
 		hero.setPosition(132, 132);
+		hero2.setPosition(192, 192);
 		while (running) {
 			update(UPDATE_TIME);
 		}
@@ -79,7 +84,6 @@ public class MainScene extends Canvas implements Runnable {
 		graphics.setColor(new Color(0, 155, 0));
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
 		Map.drawMap(graphics);
-		hero.draw(graphics);
 		graphics.dispose();
 		bStrategy.show();
 	}

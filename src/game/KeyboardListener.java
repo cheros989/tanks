@@ -7,16 +7,16 @@ public class KeyboardListener extends KeyAdapter {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			MainScene.leftPressed = true;
+			MainScene.hero.moveLeft();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			MainScene.rightPressed = true;
+			MainScene.hero.moveRight();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			MainScene.upPressed = true;
+			MainScene.hero.moveUp();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			MainScene.downPressed = true;
+			MainScene.hero.moveDown();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			MainScene.hero.shoot();
@@ -26,16 +26,16 @@ public class KeyboardListener extends KeyAdapter {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			MainScene.leftPressed = false;
+			MainScene.hero.stopLeft();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			MainScene.rightPressed = false;
+			MainScene.hero.stopRight();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			MainScene.upPressed = false;
+			MainScene.hero.stopUp();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			MainScene.downPressed = false;
+			MainScene.hero.stopDown();
 		}
 	}
 }

@@ -38,7 +38,7 @@ public class Map {
 	
 	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	public static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
-	public static Vector<Shell> shells = new Vector<Shell>();
+	public static ArrayList<Shell> shells = new ArrayList<Shell>();
 	public static ArrayList<Tank> tanks = new ArrayList<Tank>();
 
 	public static String[] getMap() {

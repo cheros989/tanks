@@ -41,8 +41,8 @@ public class MainScene extends Canvas implements Runnable {
 	}
 	
 	public void init() {
-		hero = new Tank("tank.png");
-		hero2 = new Tank("tank.png");
+		hero = new Tank("tank1.png");
+		hero2 = new Tank("tank2.png");
 		Map.tanks.add(hero);
 		Map.tanks.add(hero2);
 		addKeyListener(new KeyboardListener());

@@ -1,8 +1,8 @@
 package game.models;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 
+import game.MainScene;
 import game.constants.Direction;
 import game.map.Map;
 
@@ -14,6 +14,7 @@ public class Tank extends Sprite {
 	private boolean upPressed = false;
 	private boolean downPressed = false;
 	private long last_shoot;
+	private long die_time;
 
 	public Tank(String path) {
 		super(path);
@@ -26,6 +27,8 @@ public class Tank extends Sprite {
 		boolean upIntersect = false;
 		boolean downIntersect = false;
 		boolean rightIntersect = false;
+		int side = MainScene.TAIL_SIDE;
+
 		for (Block block : Map.blocks) {
 			Rectangle b = block.getRect();
 			Rectangle t = this.getRect();
@@ -70,7 +73,7 @@ public class Tank extends Sprite {
 		if (downPressed && !downIntersect) {
 			posy += speed;
 		}
-		g.drawImage(image, posx, posy, null);
+		g.drawImage(image, posx, posy, posx+side, posy+side, 0, 0, side, side, null);
 	}
 
 	public void shoot() {
@@ -140,6 +143,23 @@ public class Tank extends Sprite {
 			return false;
 
 		return  true;
+	}
+
+	private boolean isImmortal() {
+		if (System.currentTimeMillis() - die_time < 2000)
+			return true;
+
+		return false;
+	}
+
+	public void die() {
+
+		if (isImmortal())
+			return;
+
+		System.out.println("DIE");
+		die_time = System.currentTimeMillis();
+		this.setPosition(MainScene.TAIL_SIDE, MainScene.TAIL_SIDE);
 	}
 
 }

@@ -13,6 +13,7 @@ public class Tank extends Sprite {
 	private boolean rightPressed = false;
 	private boolean upPressed = false;
 	private boolean downPressed = false;
+	private long last_shoot;
 
 	public Tank(String path) {
 		super(path);
@@ -73,6 +74,10 @@ public class Tank extends Sprite {
 	}
 
 	public void shoot() {
+
+		if (!getCooldown()) return;
+
+		last_shoot = System.currentTimeMillis();
 		Rectangle rectangle = this.getRect();
 		Shell shell = new Shell("shell.png", getDirection(), rectangle.getCenterX(), rectangle.getCenterY(), this);
 		Map.shells.add(shell);
@@ -127,6 +132,14 @@ public class Tank extends Sprite {
 		downPressed = false;
 		leftPressed = false;
 		rightPressed = false;
+	}
+
+	private boolean getCooldown() {
+
+		if (System.currentTimeMillis() - last_shoot < 1000)
+			return false;
+
+		return  true;
 	}
 
 }

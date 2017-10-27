@@ -18,13 +18,11 @@ public class MainScene extends Canvas implements Runnable {
 	private boolean running = true;
 	private final long UPDATE_TIME = 60;
 	private static final String NAME = "THE GAME";
-	private static final int WIDTH = 900;
-	private static final int HEIGHT = 600;
 	public static final int TAIL_SIDE = 30;
-	public static boolean leftPressed = false;
-	public static boolean rightPressed = false;
-	public static boolean upPressed = false;
-	public static boolean downPressed = false;
+	public static final int ROWS = 20;
+	public static final int COLS = 30;
+	public static final int WIDTH = TAIL_SIDE * COLS;
+	public static final int HEIGHT = TAIL_SIDE * ROWS;
 	public static Tank hero;
 	public static Tank hero2;
 
@@ -38,7 +36,6 @@ public class MainScene extends Canvas implements Runnable {
 		jFrame.pack();
 		jFrame.setResizable(false);
 		jFrame.setVisible(true);
-		jFrame.setBackground(new Color(0, 255, 0));
 		Thread game = new Thread(mainScene);
 		game.start();
 	}

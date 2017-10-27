@@ -24,11 +24,11 @@ public class Shell extends Sprite {
 	public void draw(Graphics g) {
 		g.drawImage(getImage(), getPosX(), getPosY(), null);
 		Rectangle rectangle = getRect();
-		for (Block block : Map.blocks) {
-			if (rectangle.intersects(block.getRect())) {
+
+		for (Block block : Map.blocks)
+			if (rectangle.intersects(block.getRect()))
 				this.isDelete = true;
-			}
-		}
+
 		for (Tank tank : Map.tanks) {
 			if (rectangle.intersects(tank.getRect())) 
 				if (!tank.equals(owner))

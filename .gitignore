@@ -3,4 +3,4 @@ bin/
 .settings
 .idea
 .project
-thegame.iml
+*.iml

@@ -15,10 +15,14 @@ public class Tank extends Sprite {
 	private boolean downPressed = false;
 	private long last_shoot;
 	private long die_time;
+	private int rect_width;
+	private int rect_height;
 
 	public Tank(String path) {
 		super(path);
 		speed = 6;
+		this.rect_height = this.image.getHeight(null)/2;
+		this.rect_width = this.image.getWidth(null)/2;
 	}
 
 	@Override
@@ -73,7 +77,7 @@ public class Tank extends Sprite {
 		if (downPressed && !downIntersect) {
 			posy += speed;
 		}
-		g.drawImage(image, posx, posy, posx+side, posy+side, 0, 0, side, side, null);
+		g.drawImage(image, posx, posy, posx+side, posy+side, side, 0, side + side, side, null);
 	}
 
 	public void shoot() {
@@ -162,4 +166,8 @@ public class Tank extends Sprite {
 		this.setPosition(MainScene.TAIL_SIDE, MainScene.TAIL_SIDE);
 	}
 
+	@Override
+	public Rectangle getRect() {
+		return new Rectangle(getPosX(), getPosY(), rect_width, rect_height);
+	}
 }

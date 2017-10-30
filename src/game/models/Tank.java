@@ -17,6 +17,12 @@ public class Tank extends Sprite {
 	private long die_time;
 	private int rect_width;
 	private int rect_height;
+	private int side = MainScene.TAIL_SIDE;
+	private int sx1 = 0;
+	private int sy1 = 0;
+	private int sx2 = side;
+	private int sy2 = side;
+
 
 	public Tank(String path) {
 		super(path);
@@ -31,7 +37,6 @@ public class Tank extends Sprite {
 		boolean upIntersect = false;
 		boolean downIntersect = false;
 		boolean rightIntersect = false;
-		int side = MainScene.TAIL_SIDE;
 
 		for (Block block : Map.blocks) {
 			Rectangle b = block.getRect();
@@ -77,7 +82,7 @@ public class Tank extends Sprite {
 		if (downPressed && !downIntersect) {
 			posy += speed;
 		}
-		g.drawImage(image, posx, posy, posx+side, posy+side, side, 0, side + side, side, null);
+		g.drawImage(image, posx, posy, posx+side, posy+side, sx1, sy1, sx2, sy2, null);
 	}
 
 	public void shoot() {
@@ -101,21 +106,32 @@ public class Tank extends Sprite {
 	public void moveUp() {
 		stop();
 		upPressed = true;
+		setBounds(0, 0, side, side);
 	}
 	
 	public void moveDown() {
 		stop();
 		downPressed = true;
+		setBounds(side, side, side*2, side*2);
 	}
 	
 	public void moveRight() {
 		stop();
 		rightPressed = true;
+		setBounds(side, 0, side*2, side);
 	}
 	
 	public void moveLeft() {
 		stop();
 		leftPressed = true;
+		setBounds(0, side, side, side*2);
+	}
+
+	private void setBounds(int sx1, int sy1, int sx2, int sy2) {
+		this.sx1 = sx1;
+		this.sx2 = sx2;
+		this.sy1 = sy1;
+		this.sy2 = sy2;
 	}
 	
 	public void stopUp() {

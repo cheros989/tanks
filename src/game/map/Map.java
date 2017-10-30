@@ -29,7 +29,7 @@ public class Map {
 		"x----------------------------x",
 		"x----------------------------x",
 		"x----------------------------x",
-		"x----------------------------x",
+		"x--------------xxxxxxxx------x",
 		"x----------------------------x",
 		"x----------------------------x",
 		"x----------------------------x",
@@ -49,8 +49,8 @@ public class Map {
 		int size = MainScene.TAIL_SIDE;
 		int rows = MainScene.ROWS;
 		int cols = MainScene.COLS;
-		for (int i = 0; i < rows; i++) {
-			String[] currentRow = map[i].split("");
+		for (int i = 1; i < rows; i++) {
+			String[] currentRow = map[i-1].split("");
 			for (int j = 0; j < cols; j++) {
 				if (currentRow[j].equals("x")) {
 					Block block = new Block("block.png");

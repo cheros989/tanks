@@ -31,8 +31,12 @@ public class Shell extends Sprite {
 
 		for (Tank tank : Map.tanks) {
 			if (rectangle.intersects(tank.getRect())) 
-				if (!tank.equals(owner))
-					tank.die();
+				if (!tank.equals(owner)) {
+					if (!tank.isImmortal()) {
+						owner.setFrags(owner.getFrags() + 1);
+						tank.die();
+					}
+				}
 		}
 		if (direction == Direction.UP) posy -= speed;
 		if (direction == Direction.DOWN) posy += speed;

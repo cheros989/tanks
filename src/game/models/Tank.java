@@ -22,6 +22,8 @@ public class Tank extends Sprite {
 	private int sy1 = 0;
 	private int sx2 = side;
 	private int sy2 = side;
+	private int deaths = 0;
+	private int frags = 0;
 
 
 	public Tank(String path) {
@@ -165,7 +167,7 @@ public class Tank extends Sprite {
 		return  true;
 	}
 
-	private boolean isImmortal() {
+	public boolean isImmortal() {
 		if (System.currentTimeMillis() - die_time < 2000)
 			return true;
 
@@ -178,8 +180,21 @@ public class Tank extends Sprite {
 			return;
 
 		System.out.println("DIE");
+		deaths++;
 		die_time = System.currentTimeMillis();
-		this.setPosition(MainScene.TAIL_SIDE, MainScene.TAIL_SIDE);
+		this.setPosition(MainScene.TAIL_SIDE, MainScene.TAIL_SIDE*2);
+	}
+
+	public int getDeaths() {
+		return deaths;
+	}
+
+	public void setFrags(int frags) {
+		this.frags = frags;
+	}
+
+	public int getFrags() {
+		return frags;
 	}
 
 	@Override

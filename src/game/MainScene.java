@@ -1,10 +1,6 @@
 package game;
 
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -19,7 +15,7 @@ public class MainScene extends Canvas implements Runnable {
 	private final long UPDATE_TIME = 60;
 	private static final String NAME = "THE GAME";
 	public static final int TAIL_SIDE = 30;
-	public static final int ROWS = 20;
+	public static final int ROWS = 21;
 	public static final int COLS = 30;
 	public static final int WIDTH = TAIL_SIDE * COLS;
 	public static final int HEIGHT = TAIL_SIDE * ROWS;
@@ -52,7 +48,7 @@ public class MainScene extends Canvas implements Runnable {
 	@Override
 	public void run() {
 		init();
-		hero.setPosition(132, 132);
+		hero.setPosition(162, 162);
 		hero2.setPosition(192, 192);
 		while (running) {
 			update(UPDATE_TIME);
@@ -78,8 +74,11 @@ public class MainScene extends Canvas implements Runnable {
 		}
 		
 		Graphics graphics = bStrategy.getDrawGraphics();
-		graphics.setColor(new Color(0, 155, 0));
+		graphics.setColor(new Color(0, 0, 0));
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
+		graphics.setColor(new Color(255, 255, 255));
+		graphics.setFont(new Font("Arial", 120, 20));
+		graphics.drawString("<PLAYER 1>: " + hero.getFrags() + "    <PLAYER 2>: " + hero2.getFrags(), 10, 20);
 		Map.drawMap(graphics);
 		graphics.dispose();
 		bStrategy.show();

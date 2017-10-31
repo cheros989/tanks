@@ -1,6 +1,9 @@
 package game.models;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
+import java.net.URL;
 
 import game.MainScene;
 import game.constants.Direction;
@@ -24,6 +27,8 @@ public class Tank extends Sprite {
 	private int sy2 = side;
 	private int deaths = 0;
 	private int frags = 0;
+	private AudioClip shoot;
+	private AudioClip explosion;
 
 
 	public Tank(String path) {
@@ -31,6 +36,12 @@ public class Tank extends Sprite {
 		speed = 6;
 		this.rect_height = this.image.getHeight(null)/2;
 		this.rect_width = this.image.getWidth(null)/2;
+		shoot = Applet.newAudioClip(getUrl("sounds/shoot.wav"));
+		explosion = Applet.newAudioClip(getUrl("sounds/explosion.wav"));
+	}
+
+	private URL getUrl(String path) {
+		return this.getClass().getClassLoader().getResource(path);
 	}
 
 	@Override
@@ -91,6 +102,7 @@ public class Tank extends Sprite {
 
 		if (!getCooldown()) return;
 
+		shoot.play();
 		last_shoot = System.currentTimeMillis();
 		Rectangle rectangle = this.getRect();
 		Shell shell = new Shell("shell.png", getDirection(), rectangle.getCenterX(), rectangle.getCenterY(), this);
@@ -179,6 +191,7 @@ public class Tank extends Sprite {
 		if (isImmortal())
 			return;
 
+		explosion.play();
 		deaths++;
 		die_time = System.currentTimeMillis();
 		RespawnPosition position = Map.respawnPositions.get((int) Math.round(Math.random()*9));

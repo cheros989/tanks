@@ -161,7 +161,7 @@ public class Tank extends Sprite {
 
 	private boolean getCooldown() {
 
-		if (System.currentTimeMillis() - last_shoot < 1000)
+		if (System.currentTimeMillis() - last_shoot < 200)
 			return false;
 
 		return  true;
@@ -179,10 +179,10 @@ public class Tank extends Sprite {
 		if (isImmortal())
 			return;
 
-		System.out.println("DIE");
 		deaths++;
 		die_time = System.currentTimeMillis();
-		this.setPosition(MainScene.TAIL_SIDE, MainScene.TAIL_SIDE*2);
+		RespawnPosition position = Map.respawnPositions.get((int) Math.round(Math.random()*9));
+		this.setPosition(position.getX(), position.getY());
 	}
 
 	public int getDeaths() {

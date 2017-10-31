@@ -1,52 +1,59 @@
 package game.map;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 import game.MainScene;
-import game.models.Block;
-import game.models.EmptyPlace;
-import game.models.Shell;
-import game.models.Tank;
+import game.models.*;
 
 public class Map {
 	
 	private static String[] map = new String[] {
 		"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 		"x----------------------------x",
-		"x----------------------------x",
-		"xxxxxxxxxx-------------------x",
-		"x----------------------------x",
-		"x----------------------------x",
-		"x----------------------------x",
+		"x-----------------x----------x",
+		"xxxxxxxxxx--------x----------x",
+		"x-----------------x----------x",
+		"x-----------------x----------x",
+		"x-----------------x----------x",
 		"x---------------xxxxx--------x",
-		"x----------------------------x",
-		"x----------------------------x",
-		"x----------------------------x",
-		"x----xxxx--------------------x",
-		"x----------------------------x",
-		"x----------------------------x",
-		"x----------------------------x",
-		"x--------------xxxxxxxx------x",
-		"x----------------------------x",
-		"x----------------------------x",
-		"x----------------------------x",
+		"x-------------------x--------x",
+		"x-------------------x--------x",
+		"x-------------------x--------x",
+		"x----xxxxxx------------------x",
+		"x------x---------------------x",
+		"x------x---------------------x",
+		"x------x---------------------x",
+		"x------x-------xxxxxxxx------x",
+		"x------x-------x-------------x",
+		"x--------------x-------------x",
+		"x--------------x-------------x",
 		"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 	};
-	
-	public static ArrayList<Block> blocks = new ArrayList<Block>();
-	public static ArrayList<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
-	public static ArrayList<Shell> shells = new ArrayList<Shell>();
-	public static ArrayList<Tank> tanks = new ArrayList<Tank>();
+
+	public static List<Block> blocks = new ArrayList<Block>();
+	public static List<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
+	public static Vector<Shell> shells = new Vector<Shell>();
+	public static List<Tank> tanks = new ArrayList<Tank>();
+	private static int tail_side = MainScene.TAIL_SIDE;
+	public static List<RespawnPosition> respawnPositions = new ArrayList<>(Arrays.asList(
+			new RespawnPosition(tail_side, tail_side*2),
+			new RespawnPosition(tail_side*6, tail_side*10),
+			new RespawnPosition(tail_side*12, tail_side*10),
+			new RespawnPosition(tail_side*5, tail_side*10),
+			new RespawnPosition(tail_side*7, tail_side*15),
+			new RespawnPosition(tail_side*9, tail_side*15),
+			new RespawnPosition(tail_side*15, tail_side*15),
+			new RespawnPosition(tail_side*22, tail_side*17),
+			new RespawnPosition(tail_side*25, tail_side*15),
+			new RespawnPosition(tail_side*28, tail_side*5)
+	));
 
 	public static String[] getMap() {
 		return map;
 	}
 	
 	public static void buildMap() {
-		int size = MainScene.TAIL_SIDE;
 		int rows = MainScene.ROWS;
 		int cols = MainScene.COLS;
 		for (int i = 1; i < rows; i++) {
@@ -54,12 +61,12 @@ public class Map {
 			for (int j = 0; j < cols; j++) {
 				if (currentRow[j].equals("x")) {
 					Block block = new Block("block.png");
-					block.setPosition(j*size, i*size);
+					block.setPosition(j*tail_side, i*tail_side);
 					blocks.add(block);
 				}
 				if (currentRow[j].equals("-")) {
 					EmptyPlace emptyPlace = new EmptyPlace("emptyPlace.png");
-					emptyPlace.setPosition(j*size, i*size);
+					emptyPlace.setPosition(j*tail_side, i*tail_side);
 					emptyPlaces.add(emptyPlace);
 				}
 			}
@@ -74,13 +81,17 @@ public class Map {
 			emptyPlace.draw(g);
 		}
 		Iterator<Shell> iterator = shells.iterator();
-		while (iterator.hasNext()) {
-			Shell shell = iterator.next();
-			if (shell.isDelete()) {
-				iterator.remove();
-				continue;
+		synchronized (shells) {
+			synchronized (iterator) {
+				while (iterator.hasNext()) {
+					Shell shell = iterator.next();
+					if (shell.isDelete()) {
+						iterator.remove();
+						continue;
+					}
+					shell.draw(g);
+				}
 			}
-			shell.draw(g);
 		}
 		for (Tank tank : tanks) {
 			tank.draw(g);

@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import game.map.Map;
 import game.models.Tank;
 
+import game.network.Client;
+
 public class MainScene extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
@@ -39,10 +41,12 @@ public class MainScene extends Canvas implements Runnable {
 	public void init() {
 		hero = new Tank("tank1.png");
 		hero2 = new Tank("tank2.png");
-		Map.tanks.add(hero);
-		Map.tanks.add(hero2);
+		Map.tanks.put("me", hero);
+		Map.tanks.put("hero2", hero2);
 		addKeyListener(new KeyboardListener());
 		Map.buildMap();
+		Thread client = new Thread(new Client());
+		client.start();
 	}
 
 	@Override

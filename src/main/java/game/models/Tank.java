@@ -4,6 +4,7 @@ import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
 import java.net.URL;
+import java.util.Date;
 
 import game.MainScene;
 import game.constants.Direction;
@@ -29,6 +30,7 @@ public class Tank extends Sprite {
 	private int frags = 0;
 	private AudioClip shoot;
 	private AudioClip explosion;
+	private String name;
 
 
 	public Tank(String path) {
@@ -38,6 +40,7 @@ public class Tank extends Sprite {
 		this.rect_width = this.image.getWidth(null)/2;
 		shoot = Applet.newAudioClip(getUrl("sounds/shoot.wav"));
 		explosion = Applet.newAudioClip(getUrl("sounds/explosion.wav"));
+		this.name = String.valueOf(new Date().getTime());
 	}
 
 	private URL getUrl(String path) {
@@ -196,6 +199,14 @@ public class Tank extends Sprite {
 		die_time = System.currentTimeMillis();
 		RespawnPosition position = Map.respawnPositions.get((int) Math.round(Math.random()*9));
 		this.setPosition(position.getX(), position.getY());
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public int getPosx() {
+		return this.posx;
 	}
 
 	public int getDeaths() {

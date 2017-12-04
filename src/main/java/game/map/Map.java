@@ -1,7 +1,8 @@
 package game.map;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 import game.MainScene;
 import game.models.*;
@@ -34,7 +35,7 @@ public class Map {
 	public static List<Block> blocks = new ArrayList<Block>();
 	public static List<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
 	public static Vector<Shell> shells = new Vector<Shell>();
-	public static List<Tank> tanks = new ArrayList<Tank>();
+	public static HashMap<String, Tank> tanks = new HashMap();
 	private static int tail_side = MainScene.TAIL_SIDE;
 	public static List<RespawnPosition> respawnPositions = new ArrayList<>(Arrays.asList(
 			new RespawnPosition(tail_side, tail_side*2),
@@ -93,8 +94,8 @@ public class Map {
 				}
 			}
 		}
-		for (Tank tank : tanks) {
-			tank.draw(g);
+		for (java.util.Map.Entry<String, Tank> t : tanks.entrySet()) {
+			t.getValue().draw(g);
 		}
 	}
 }

@@ -29,7 +29,8 @@ public class Shell extends Sprite {
 			if (rectangle.intersects(block.getRect()))
 				this.isDelete = true;
 
-		for (Tank tank : Map.tanks) {
+		for (java.util.Map.Entry<String, Tank> t : Map.tanks.entrySet()) {
+			Tank tank = t.getValue();
 			if (rectangle.intersects(tank.getRect())) 
 				if (!tank.equals(owner)) {
 					if (!tank.isImmortal()) {

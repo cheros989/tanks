@@ -34,7 +34,7 @@ public class Map {
 
 	public static List<Block> blocks = new ArrayList<Block>();
 	public static List<EmptyPlace> emptyPlaces = new ArrayList<EmptyPlace>();
-	public static Vector<Shell> shells = new Vector<Shell>();
+	public static List<Shell> shells = Collections.synchronizedList(new ArrayList<Shell>());
 	public static HashMap<String, Tank> tanks = new HashMap();
 	private static int tail_side = MainScene.TAIL_SIDE;
 	public static List<RespawnPosition> respawnPositions = new ArrayList<>(Arrays.asList(
@@ -42,7 +42,6 @@ public class Map {
 			new RespawnPosition(tail_side*6, tail_side*10),
 			new RespawnPosition(tail_side*12, tail_side*10),
 			new RespawnPosition(tail_side*5, tail_side*10),
-			new RespawnPosition(tail_side*7, tail_side*15),
 			new RespawnPosition(tail_side*9, tail_side*15),
 			new RespawnPosition(tail_side*15, tail_side*15),
 			new RespawnPosition(tail_side*22, tail_side*17),

@@ -1,8 +1,8 @@
-This game is for two players. You can play with your frien by one keyboard.
-Sense of the game is killing your partner and collect scores (as in classic battle tanks)
-Controls for player1:
-arrows to moving control
-"Enter" to shooting
-Controls for player2:
-"W", "A", "S", "D" to moving control
-"G" to shooting
+This game is for <b>two</b> players. You can play with your frien by one keyboard.<br>
+Sense of the game is killing your partner and collect scores (as in classic battle tanks)<br>
+Controls for <b>player1</b>:<br>
+arrows to moving control<br>
+"Enter" to shooting<br>
+Controls for <b>player2</b>:<br>
+"W", "A", "S", "D" to moving control<br>
+"G" to shooting<br>
